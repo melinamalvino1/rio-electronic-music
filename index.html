@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Río Electronic Music</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --negro: #080907;
+    --selva: #111a0f;
+    --crema: #E8DFC0;
+    --crema-suave: #c9bfa0;
+    --dorado: #C4A96B;
+    --verde-musgo: #4A6741;
+    --verde-medio: #2a4a28;
+    --texto: #d4c9a8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--negro);
+    color: var(--crema);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    padding: 0 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(12,13,11,0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 50px;
+    height: 52px;
+    width: auto;
+    min-width: 600px;
+    border: 1px solid rgba(232,223,192,0.08);
+  }
+
+  .nav-logo {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 48px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--crema-suave);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover { color: var(--crema); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    height: 75vh;
+    min-height: 520px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+    padding-bottom: 80px;
+    background-image: url('img/hero-bg.png');
+    background-size: cover;
+    background-position: center top;
+    animation: kenBurns 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 50% 30%, rgba(42,74,40,0.4) 0%, transparent 60%),
+      linear-gradient(to bottom, transparent 30%, rgba(8,9,7,0.8) 70%, var(--negro) 100%);
+    z-index: 1;
+  }
+
+  /* Animated jungle texture overlay */
+  .hero-texture {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(74,103,65,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, rgba(26,48,32,0.3) 0%, transparent 40%);
+    z-index: 1;
+    animation: breathe 8s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+  }
+
+  /* Jungle particles */
+  .leaf {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--verde-musgo);
+    border-radius: 50% 0 50% 0;
+    opacity: 0;
+    animation: fall linear infinite;
+    z-index: 2;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.4; }
+    90% { opacity: 0.2; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: auto;
+    padding-top: 80px;
+  }
+
+  .hero-logo-img {
+    width: 220px;
+    height: auto;
+    filter: drop-shadow(0 2px 12px rgba(0,0,0,0.4));
+    margin-bottom: 8px;
+  }
+
+  .hero-location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--dorado);
+    text-transform: uppercase;
+  }
+
+  .hero-location::before, .hero-location::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--dorado);
+    opacity: 0.6;
+  }
+
+  .hero-socials {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .hero-social-item:hover {
+    transform: translateY(-3px);
+  }
+
+  .hero-social-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+
+  .hero-social-item:hover .hero-social-circle {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.5);
+  }
+
+  .hero-social-circle svg {
+    width: 22px;
+    height: 22px;
+    color: #ffffff;
+    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));
+  }
+
+  .hero-social-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--crema-suave));
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+    50% { opacity: 0.8; transform: scaleY(1); }
+  }
+
+  .scroll-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    color: var(--crema-suave);
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 100px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--dorado);
+    margin-bottom: 16px;
+    opacity: 0.7;
+    font-size: 0;
+  }
+
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--crema);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+    line-height: 1;
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--dorado);
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+
+  /* ─── EVENTOS ─── */
+  #eventos { padding-top: 48px; }
+
+  .eventos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  /* Filtros país + mes */
+  .filtros-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+  }
+
+  .pais-filtro {
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.04);
+    padding: 4px;
+    border-radius: 4px;
+  }
+
+  .pais-btn {
+    background: none;
+    border: none;
+    color: var(--crema-suave);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .pais-btn:hover { color: var(--crema); }
+
+  .pais-btn.active {
+    background: var(--verde-medio);
+    color: var(--crema);
+  }
+
+  .pais-flag {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .mes-filtro {
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.04);
+    padding: 4px;
+    border-radius: 4px;
+  }
+
+  .mes-btn {
+    background: none;
+    border: none;
+    color: var(--crema-suave);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+
+  .mes-btn:hover { color: var(--crema); }
+
+  .mes-btn.active {
+    background: var(--verde-medio);
+    color: var(--crema);
+  }
+
+  /* Cards de eventos */
+  .eventos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .evento-card {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: var(--selva);
+    text-decoration: none;
+    display: block;
+  }
+
+  .evento-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .evento-card-flyer {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease, filter 0.6s ease;
+  }
+
+  .evento-card:hover .evento-card-flyer {
+    transform: scale(1.05);
+    filter: brightness(0.5);
+  }
+
+  .evento-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(8,9,7,0.95) 0%, rgba(8,9,7,0.4) 40%, transparent 70%);
+    transition: opacity 0.4s;
+  }
+
+  .evento-card:hover .evento-card-overlay {
+    background: linear-gradient(to top, rgba(8,9,7,0.98) 0%, rgba(8,9,7,0.7) 50%, rgba(8,9,7,0.4) 100%);
+  }
+
+  .evento-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 24px;
+  }
+
+  .evento-fecha {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    color: var(--dorado);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .evento-subtitulo {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--crema-suave);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+
+  .evento-artistas {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .evento-artistas li {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    color: var(--crema);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.15;
+  }
+
+  .evento-artistas li.headliner {
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  }
+
+  .evento-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s 0.1s;
+  }
+
+  .evento-card:hover .evento-ctas {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .btn-entradas {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--crema);
+    color: var(--crema);
+    transition: all 0.3s;
+    background: rgba(8,9,7,0.5);
+  }
+
+  .btn-entradas:hover {
+    background: var(--crema);
+    color: var(--negro);
+  }
+
+  .btn-entradas.vip {
+    border-color: var(--dorado);
+    color: var(--dorado);
+  }
+
+  .btn-entradas.vip:hover {
+    background: var(--dorado);
+    color: var(--negro);
+  }
+
+  /* No hay eventos */
+  .no-eventos {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--crema-suave);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    display: none;
+  }
+
+  /* ─── SOBRE ─── */
+  #sobre {
+    border-top: none;
+    background: var(--selva);
+  }
+
+  .sobre-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .sobre-texto p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--texto);
+    margin-bottom: 20px;
+  }
+
+  .sobre-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .stat {
+    border-left: 2px solid var(--dorado);
+    padding-left: 16px;
+  }
+
+  .stat-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--crema);
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--crema-suave);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .sobre-visual {
+    position: relative;
+  }
+
+  .sobre-img-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--selva);
+    border: 1px solid rgba(232,223,192,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .sobre-jungle {
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(ellipse at 30% 70%, rgba(42,74,40,0.6) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 30%, rgba(17,26,15,0.8) 0%, transparent 50%),
+      var(--selva);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sobre-jungle-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 4rem;
+    color: rgba(232,223,192,0.15);
+    user-select: none;
+  }
+
+  /* ─── GALERÍA (strip) ─── */
+  .galeria-strip {
+    width: 100%;
+    overflow: hidden;
+    padding: 60px 0;
+    background: var(--selva);
+    position: relative;
+  }
+
+  .galeria-strip::before, .galeria-strip::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 120px;
+    z-index: 2;
+  }
+
+  .galeria-strip::before { left: 0; background: linear-gradient(to right, var(--negro), transparent); }
+  .galeria-strip::after { right: 0; background: linear-gradient(to left, var(--negro), transparent); }
+
+  .strip-track {
+    display: flex;
+    gap: 16px;
+    animation: strip 30s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes strip {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .strip-item {
+    width: 200px;
+    height: 130px;
+    background: var(--verde-medio);
+    flex-shrink: 0;
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .strip-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+
+  .strip-item:hover img { opacity: 1; }
+
+  .strip-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--verde-medio), var(--selva));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: rgba(232,223,192,0.2);
+  }
+
+  /* ─── CONTACTO ─── */
+  #contacto {
+    border-top: none;
+    background: var(--selva);
+  }
+
+  .contacto-inner {
+    max-width: 100%;
+  }
+
+  .contacto-email {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--crema);
+    text-decoration: none;
+    border-bottom: 1px solid var(--dorado);
+    padding-bottom: 4px;
+    margin-bottom: 48px;
+    transition: color 0.3s;
+  }
+
+  .contacto-email:hover { color: var(--dorado); }
+
+  /* Email capture */
+  .email-form {
+    display: flex;
+    gap: 0;
+    max-width: 420px;
+    margin: 0 auto;
+    border: 1px solid rgba(232,223,192,0.2);
+  }
+
+  .email-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 14px 20px;
+    color: var(--crema);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .email-input::placeholder { color: rgba(232,223,192,0.3); }
+
+  .email-submit {
+    background: var(--verde-musgo);
+    border: none;
+    padding: 14px 24px;
+    color: var(--crema);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .email-submit:hover { background: var(--dorado); color: var(--negro); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid rgba(232,223,192,0.08);
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--crema);
+  }
+
+  .footer-info {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--crema-suave);
+    text-transform: uppercase;
+    opacity: 0.5;
+    text-align: center;
+  }
+
+
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav {
+      top: 12px;
+      min-width: unset;
+      width: auto;
+      padding: 0 20px;
+      height: 44px;
+    }
+    .nav-links { display: none; }
+    section { padding: 70px 20px; }
+    .sobre-inner { grid-template-columns: 1fr; gap: 40px; }
+    .sobre-visual { display: none; }
+    .eventos-grid { grid-template-columns: 1fr; }
+    footer { padding: 30px 20px; flex-direction: column; text-align: center; }
+    .eventos-header { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ─── ANIMACIONES ENTRADA ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-inline-message {
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  .hero-message-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.7);
+  }
+
+  .hero-message-sub {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+    font-weight: 400;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.85;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+  }
+
+  /* ─── ECOSISTEMA RÍO ─── */
+  #ecosistema {
+    border-top: 1px solid rgba(232,223,192,0.08);
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .ecosistema-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .eco-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(232,223,192,0.08);
+    padding: 28px 24px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .eco-card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(232,223,192,0.18);
+    transform: translateY(-3px);
+  }
+
+  .eco-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .eco-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--verde-medio);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .eco-card-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--crema);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
+
+  .eco-card-desc {
+    font-size: 0.78rem;
+    color: var(--texto);
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  .eco-card-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  .eco-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: 1px solid rgba(232,223,192,0.15);
+    color: var(--crema-suave);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+
+  .eco-link:hover {
+    border-color: var(--dorado);
+    color: var(--dorado);
+  }
+
+  .eco-link svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+  }
+
+  /* ─── ARTISTAS ─── */
+  #artistas {
+    position: relative;
+    padding: 100px 40px;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .artistas-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('img/artistas-bg.png');
+    background-size: cover;
+    background-position: center top;
+    opacity: 0.18;
+    z-index: 0;
+  }
+
+  .artistas-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--negro) 0%, transparent 20%, transparent 80%, var(--negro) 100%);
+    z-index: 1;
+  }
+
+  .artistas-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .artistas-titulo {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(0.65rem, 1vw, 0.75rem);
+    letter-spacing: 0.4em;
+    color: var(--dorado);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .artistas-heading {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--crema);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+  }
+
+  .artistas-lista {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 400;
+    color: var(--crema);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.9;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+  }
+
+  .artistas-lista span {
+    color: var(--dorado);
+    opacity: 0.6;
+    margin: 0 6px;
+    font-size: 0.8em;
+  }
+
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .contacto-left {}
+  .contacto-right {}
+
+  @media (max-width: 768px) {
+    .contacto-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  /* ─── HAMBURGER & MOBILE MENU ─── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--crema);
+    transition: all 0.3s;
+  }
+
+  .mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 198;
+    backdrop-filter: blur(4px);
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 75vw;
+    max-width: 300px;
+    background: rgba(10,11,9,0.97);
+    border-left: 1px solid rgba(232,223,192,0.1);
+    z-index: 199;
+    padding: 80px 40px 40px;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+
+  .mobile-menu-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: var(--crema-suave);
+    font-size: 1.1rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .mobile-menu-close:hover { opacity: 1; }
+
+  .mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .mobile-menu ul li a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--crema);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .mobile-menu ul li a:hover { color: var(--dorado); }
+
+  @media (max-width: 768px) {
+    .nav-hamburger { display: flex; }
+    .nav-links { display: none !important; }
+    .mobile-menu-overlay.open { display: block; }
+    .mobile-menu { display: flex; }
+    nav {
+      top: 12px;
+      min-width: unset;
+      width: auto;
+      padding: 0 20px;
+      height: 44px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #sobre {
+      position: relative;
+    }
+    #sobre::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('img/sobre-foto.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+      z-index: 0;
+      pointer-events: none;
+    }
+    #sobre .sobre-inner {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  #contacto {
+    position: relative;
+    overflow: hidden;
+  }
+
+  #contacto::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('img/hero-bg.png');
+    background-size: cover;
+    background-position: center bottom;
+    opacity: 0.6;
+    z-index: 0;
+  }
+
+  #contacto::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--negro) 0%, transparent 30%, transparent 70%, var(--negro) 100%);
+    z-index: 1;
+  }
+
+  #contacto .fade-up {
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 768px) {
+    .hero-socials {
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .hero-socials-group {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .hero-socials-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+      margin: 0 auto;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .hero-socials-group {
+      display: contents;
+    }
+    .hero-socials-divider {
+      display: none;
+    }
+  }
+
+  /* ─── GRAIN TEXTURE ─── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+    animation: grain-move 0.8s steps(1) infinite;
+  }
+
+  @keyframes grain-move {
+    0%   { background-position: 0 0; }
+    10%  { background-position: -5% -10%; }
+    20%  { background-position: -15% 5%; }
+    30%  { background-position: 7% -25%; }
+    40%  { background-position: -5% 25%; }
+    50%  { background-position: -15% 10%; }
+    60%  { background-position: 15% 0%; }
+    70%  { background-position: 0% 15%; }
+    80%  { background-position: 3% 35%; }
+    90%  { background-position: -10% 10%; }
+    100% { background-position: 0 0; }
+  }
+
+  /* ─── HERO ANIMATIONS ─── */
+  @keyframes kenBurns {
+    0%   { transform: scale(1.12); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes heroBlurReveal {
+    0%   { opacity: 0; transform: translateY(28px); filter: blur(14px); }
+    100% { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  }
+
+  @keyframes heroFadeUp {
+    0%   { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-anim {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-blur-reveal {
+    animation-name: heroBlurReveal;
+    animation-duration: 1.2s;
+  }
+
+  .hero-fade-up {
+    animation-name: heroFadeUp;
+    animation-duration: 1s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-anim { animation: none; opacity: 1; }
+  }
+
+  /* ─── CARDS ENTRADA ESCALONADA ─── */
+  @keyframes cardReveal {
+    0%   { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .evento-card {
+    animation: none;
+  }
+
+  .evento-card.card-visible {
+    animation: cardReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* ─── MARQUEE ARTISTAS ─── */
+  .artistas-lista {
+    display: none !important;
+  }
+
+  .artistas-marquee-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .artistas-marquee-wrapper::before,
+  .artistas-marquee-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 120px;
+    z-index: 2;
+  }
+
+  .artistas-marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--negro), transparent);
+  }
+
+  .artistas-marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--negro), transparent);
+  }
+
+  .artistas-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 35s linear infinite;
+  }
+
+  .artistas-marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .artistas-marquee-item {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 400;
+    color: var(--crema);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    padding: 12px 0;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+  }
+
+  .artistas-marquee-dot {
+    color: var(--dorado);
+    opacity: 0.6;
+    margin: 0 16px;
+    font-size: 0.8em;
+  }
+
+  /* ─── PARALLAX ─── */
+  .hero-parallax-bg {
+    will-change: transform;
+    transform: translateY(0px);
+  }
+
+
+
+  /* ─── WAVE TRANSITIONS ─── */
+  .wave-divider {
+    position: relative;
+    z-index: 10;
+    margin-top: -2px;
+    margin-bottom: -2px;
+    line-height: 0;
+    overflow: hidden;
+  }
+
+  .wave-divider svg {
+    display: block;
+    width: 100%;
+  }
+
+  .wave-divider.flipped {
+    transform: scaleY(-1);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#eventos" onclick="closeMenu()">Próximas Fechas</a></li>
+    <li><a href="#sobre" onclick="closeMenu()">Nosotros</a></li>
+    <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMenu()"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMenu()">✕</button>
+  <ul>
+    <li><a href="#eventos" onclick="closeMenu()">Próximas Fechas</a></li>
+    <li><a href="#sobre" onclick="closeMenu()">Nosotros</a></li>
+    <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio" style="padding: 0; max-width: 100%;">
+  <div class="hero-bg hero-parallax-bg" id="heroBg"></div>
+  <div class="hero-texture"></div>
+
+  <!-- Partículas de hojas -->
+  <div id="leaves"></div>
+
+  <div class="hero-content">
+    <img class="hero-logo-img" src="img/logo-rio.png" alt="Río Electronic Music">
+    <div class="hero-inline-message">
+      <div class="hero-message-title hero-anim hero-blur-reveal" style="animation-delay:0.3s">Río Electronic Music</div>
+      <div class="hero-message-sub hero-anim hero-blur-reveal" style="animation-delay:0.5s">La fiesta de electrónica más icónica</div>
+    </div>
+    
+    <div class="hero-socials hero-anim hero-fade-up" style="animation-delay:0.75s">
+
+      <!-- Grupo 1: Río principal -->
+      <div class="hero-socials-group">
+        <a href="https://www.instagram.com/rioelectronicmusic/" target="_blank" class="hero-social-item">
+          <div class="hero-social-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <span class="hero-social-label">Argentina</span>
+        </a>
+        <a href="https://www.tiktok.com/@rioelectronicmusic?_t=zm-8wpjmrte6tn&_r=1" target="_blank" class="hero-social-item">
+          <div class="hero-social-circle">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </div>
+          <span class="hero-social-label">TikTok</span>
+        </a>
+        <a href="https://www.youtube.com/@rioelectronicmusictv?si=eLQjMS5FrbZUjUMW" target="_blank" class="hero-social-item">
+          <div class="hero-social-circle">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <span class="hero-social-label">Río TV</span>
+        </a>
+      </div>
+
+      <!-- Divisor -->
+      <div class="hero-socials-divider"></div>
+
+      <!-- Grupo 2: Ecosistema -->
+      <div class="hero-socials-group">
+        <a href="https://tr.ee/XBCBr3H1CI" target="_blank" class="hero-social-item">
+          <div class="hero-social-circle">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5a7.5 7.5 0 1 1 0 15 7.5 7.5 0 0 1 0-15zm0 2.5a5 5 0 1 0 0 10A5 5 0 0 0 12 7zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+          </div>
+          <span class="hero-social-label">Music Label</span>
+        </a>
+        <a href="https://tr.ee/904EF9VFOf" target="_blank" class="hero-social-item">
+          <div class="hero-social-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <span class="hero-social-label">Label IG</span>
+        </a>
+        <a href="https://tr.ee/jq47GX-98a" target="_blank" class="hero-social-item">
+          <div class="hero-social-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <span class="hero-social-label">Chile IG</span>
+        </a>
+        <a href="https://tr.ee/mF1VLbx1WH" target="_blank" class="hero-social-item">
+          <div class="hero-social-circle">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l7 4.5-7 4.5z"/></svg>
+          </div>
+          <span class="hero-social-label">Ingrv</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <div class="hero-scroll hero-anim hero-fade-up" style="animation-delay:1s" onclick="document.getElementById('eventos').scrollIntoView({behavior:'smooth'})">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</section>
+
+
+<!-- WAVE: Hero → Eventos -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C180,90 360,0 540,45 C720,90 900,10 1080,50 C1260,90 1380,20 1440,40 L1440,90 L0,90 Z" fill="#080907"/>
+  </svg>
+</div>
+
+<!-- PRÓXIMAS FECHAS -->
+<section id="eventos">
+  <div class="eventos-header fade-up">
+    <div>
+      <div class="section-eyebrow">Agenda</div>
+      <h2 class="section-title" style="margin-bottom:0">Próximas Fechas</h2>
+    </div>
+    <div class="filtros-wrapper">
+      <div class="pais-filtro" id="paisFiltro">
+        <button class="pais-btn active" data-pais="AR" onclick="filtrarPais('AR', this)">
+          <span class="pais-flag">🇦🇷</span> Argentina
+        </button>
+        <button class="pais-btn" data-pais="CL" onclick="filtrarPais('CL', this)">
+          <span class="pais-flag">🇨🇱</span> Chile
+        </button>
+        <button class="pais-btn" data-pais="ES" onclick="filtrarPais('ES', this)">
+          <span class="pais-flag">🇪🇸</span> España
+        </button>
+      </div>
+      <div class="mes-filtro" id="mesFiltro">
+        <button class="mes-btn active" data-mes="TODOS" onclick="filtrarMes(this)">Todos</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="eventos-grid fade-up" id="eventosGrid"></div>
+  <div class="no-eventos" id="noEventos">No hay eventos programados para este período</div>
+</section>
+
+</div>
+
+
+<!-- WAVE: Eventos → Sobre -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1440" height="80" fill="#111a0f"/>
+    <path d="M0,50 C240,10 480,70 720,35 C960,0 1200,60 1440,30 L1440,80 L0,80 Z" fill="#080907"/>
+  </svg>
+</div>
+
+<!-- SOBRE RÍO -->
+<section id="sobre">
+  <div class="sobre-inner fade-up">
+    <div class="sobre-texto">
+      <div class="section-eyebrow">La experiencia</div>
+      <h2 class="section-title">Sobre Río</h2>
+      <p>Río Electronic Music nació en Buenos Aires y se convirtió en una de las fiestas de música electrónica más icónicas de Latinoamérica. Una propuesta única que fusiona naturaleza, río y la mejor música del mundo.</p>
+      <p>Desde sus inicios en Punta Carrasco, Río EM recibe a los mejores DJs internacionales en locaciones únicas — una experiencia que mezcla lo veraniego con lo subterráneo, lo internacional con lo local. Hoy presente en Argentina, Chile y España.</p>
+    </div>
+    <div class="sobre-visual">
+      <div class="sobre-img-frame">
+        <img src="img/sobre-foto.png" alt="Río Electronic Music" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: Sobre → Artistas -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1440" height="80" fill="#080907"/>
+    <path d="M0,35 C200,80 500,5 800,55 C1050,90 1280,20 1440,50 L1440,0 L0,0 Z" fill="#111a0f"/>
+  </svg>
+</div>
+
+<!-- ARTISTAS -->
+<section id="artistas">
+  <div class="artistas-bg"></div>
+  <div class="artistas-bg-overlay"></div>
+  <div class="artistas-inner fade-up">
+    <h2 class="artistas-heading">Artistas Destacados</h2>
+    <div class="artistas-marquee-wrapper">
+      <div class="artistas-marquee-track">
+        <span class="artistas-marquee-item">SOLOMUN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">TALE OF US</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MICHAEL BIBI</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">BORIS BREJCHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADRIATIQUE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADAM BEYER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN SUMMIT</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMES HYPE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ANOTR</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MOCHAKK</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAU P</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PAWSA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMIE JONES</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN DIGWEED</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SASHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FISHER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LOCO DICE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLAPTONE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">GUY J</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FRANKY RIZARDO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">NICK WARREN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SVEN VÄTH</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LUCIANO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">WADE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLOONEE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAX STYLER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">POPOF</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DENNIS CRUZ</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ILARIO ALICANTE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CHRIS STUSSY</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PACO OSUNA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DUBFIRE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">KOLOMBO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SOLOMUN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">TALE OF US</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MICHAEL BIBI</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">BORIS BREJCHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADRIATIQUE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADAM BEYER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN SUMMIT</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMES HYPE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ANOTR</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MOCHAKK</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAU P</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PAWSA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMIE JONES</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN DIGWEED</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SASHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FISHER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LOCO DICE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLAPTONE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">GUY J</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FRANKY RIZARDO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">NICK WARREN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SVEN VÄTH</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LUCIANO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">WADE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLOONEE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAX STYLER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">POPOF</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DENNIS CRUZ</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ILARIO ALICANTE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CHRIS STUSSY</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PACO OSUNA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DUBFIRE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">KOLOMBO</span><span class="artistas-marquee-dot">·</span>
+      </div>
+    </div>
+    <div class="artistas-lista">
+      SOLOMUN <span>·</span> TALE OF US <span>·</span> MICHAEL BIBI <span>·</span> BORIS BREJCHA <span>·</span> ADRIATIQUE <span>·</span> ADAM BEYER <span>·</span> JOHN SUMMIT <span>·</span> JAMES HYPE <span>·</span> ANOTR <span>·</span> MOCHAKK <span>·</span> MAU P <span>·</span> PAWSA <span>·</span> JAMIE JONES <span>·</span> JOHN DIGWEED <span>·</span> SASHA <span>·</span> FISHER <span>·</span> LOCO DICE <span>·</span> CLAPTONE <span>·</span> GUY J <span>·</span> FRANKY RIZARDO <span>·</span> NICK WARREN <span>·</span> SVEN VÄTH <span>·</span> LUCIANO <span>·</span> WADE <span>·</span> CLOONEE <span>·</span> MAX STYLER <span>·</span> POPOF <span>·</span> DENNIS CRUZ <span>·</span> ILARIO ALICANTE <span>·</span> CHRIS STUSSY <span>·</span> PACO OSUNA <span>·</span> DUBFIRE <span>·</span> KOLOMBO <span>·</span> ENTRE OTROS.
+    </div>
+  </div>
+</section>
+
+
+<!-- WAVE: Artistas → Contacto -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1440" height="80" fill="#111a0f"/>
+    <path d="M0,30 C300,80 600,0 900,50 C1100,85 1300,15 1440,45 L1440,80 L0,80 Z" fill="#080907"/>
+  </svg>
+</div>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="fade-up">
+    <div class="contacto-grid">
+      <div class="contacto-left">
+        <div class="section-eyebrow">Contacto</div>
+        <h2 class="section-title">No Te Pierdas Nada</h2>
+        <p style="font-size:0.85rem; color:var(--texto); line-height:1.7; max-width:400px;">Suscribite para recibir la agenda de eventos, lanzamientos y novedades de Río Electronic Music.</p>
+      </div>
+      <div class="contacto-right">
+        <form class="email-form" onsubmit="handleSubmit(event)">
+          <input type="email" class="email-input" placeholder="Tu email" required>
+          <button type="submit" class="email-submit">Suscribirse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="img/logo-rio.png" alt="Río Electronic Music" style="width:60px;height:auto;opacity:0.8;">
+  <div class="footer-info">© Río Electronic Music</div>
+</footer>
+
+<script>
+/*
+ * ════════════════════════════════════════════════════════════
+ *   ZONA DE EVENTOS — RÍO ELECTRONIC MUSIC
+ *   Los eventos ya NO se editan acá. Se administran desde
+ *   el panel /admin (Decap CMS), que guarda los datos en
+ *   eventos/eventos.json. Este script carga ese archivo
+ *   con fetch al iniciar la página.
+ * ════════════════════════════════════════════════════════════
+*/
+
+let EVENTOS = [];
+
+async function cargarEventos() {
+  try {
+    const res = await fetch('eventos/eventos.json', { cache: 'no-store' });
+    const data = await res.json();
+    EVENTOS = data.eventos || [];
+  } catch (err) {
+    console.error('No se pudieron cargar los eventos:', err);
+    EVENTOS = [];
+  }
+  generarMeses(paisActivo);
+  renderEventos();
+  initCardStagger();
+}
+
+let paisActivo = 'AR';
+let mesActivo = 'TODOS';
+
+// Generar meses únicos para el país activo
+function generarMeses(pais) {
+  const filtroDiv = document.getElementById('mesFiltro');
+  const eventosPais = EVENTOS.filter(e => e.pais === pais);
+  const meses = [...new Set(eventosPais.map(e => e.mes))];
+
+  // Rebuild month buttons
+  filtroDiv.innerHTML = '<button class="mes-btn active" data-mes="TODOS" onclick="filtrarMes(this)">Todos</button>';
+  meses.forEach(mes => {
+    const btn = document.createElement('button');
+    btn.className = 'mes-btn';
+    btn.dataset.mes = mes;
+    btn.textContent = mes;
+    btn.onclick = function() { filtrarMes(this); };
+    filtroDiv.appendChild(btn);
+  });
+}
+
+// Filtrar por país
+function filtrarPais(pais, btn) {
+  paisActivo = pais;
+  mesActivo = 'TODOS';
+  document.querySelectorAll('.pais-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  generarMeses(pais);
+  renderEventos();
+}
+
+// Filtrar por mes
+function filtrarMes(btn) {
+  mesActivo = btn.dataset.mes;
+  document.querySelectorAll('.mes-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderEventos();
+}
+
+// Renderizar cards
+function renderEventos() {
+  // reset stagger on re-render
+  setTimeout(() => {
+    document.querySelectorAll('.evento-card').forEach((card, i) => {
+      card.style.opacity = '0';
+      setTimeout(() => card.classList.add('card-visible'), i * 120);
+    });
+  }, 50);
+  const grid = document.getElementById('eventosGrid');
+  const noEventos = document.getElementById('noEventos');
+  let filtrados = EVENTOS.filter(e => e.pais === paisActivo);
+  if (mesActivo !== 'TODOS') filtrados = filtrados.filter(e => e.mes === mesActivo);
+
+  if (filtrados.length === 0) {
+    grid.innerHTML = '';
+    noEventos.style.display = 'block';
+    return;
+  }
+
+  noEventos.style.display = 'none';
+  grid.innerHTML = filtrados.map(e => `
+    <a class="evento-card" href="${e.linkEntradas}" target="_blank">
+      <img class="evento-card-flyer" src="${e.imagen}" alt="${e.headliner}">
+      <div class="evento-card-overlay"></div>
+      <div class="evento-card-info">
+        <div class="evento-fecha">${e.fecha}</div>
+        <div class="evento-subtitulo">${e.subtitulo}</div>
+        <ul class="evento-artistas">
+          ${e.artistas.map(a => `<li class="${a === e.headliner ? 'headliner' : ''}">${a}</li>`).join('')}
+        </ul>
+        <div class="evento-ctas">
+          <div class="btn-entradas">Comprar Entradas</div>
+          ${e.linkVIP ? `<a href="${e.linkVIP}" target="_blank" class="btn-entradas vip" onclick="event.stopPropagation()">Zona VIP</a>` : ''}
+        </div>
+      </div>
+    </a>
+  `).join('');
+}
+
+
+// Partículas de hojas
+function buildLeaves() {
+  const container = document.getElementById('leaves');
+  for (let i = 0; i < 12; i++) {
+    const leaf = document.createElement('div');
+    leaf.className = 'leaf';
+    leaf.style.left = Math.random() * 100 + 'vw';
+    leaf.style.animationDuration = (8 + Math.random() * 12) + 's';
+    leaf.style.animationDelay = (Math.random() * 10) + 's';
+    leaf.style.width = (4 + Math.random() * 6) + 'px';
+    leaf.style.height = leaf.style.width;
+    container.appendChild(leaf);
+  }
+}
+
+// Intersection Observer para animaciones
+function initAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+}
+
+// Form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  const input = e.target.querySelector('input');
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✓ Listo';
+  btn.style.background = 'var(--verde-musgo)';
+  input.value = '';
+  setTimeout(() => {
+    btn.textContent = 'Suscribirse';
+    btn.style.background = '';
+  }, 3000);
+}
+
+
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('mobileOverlay');
+  menu.classList.toggle('open');
+  overlay.classList.toggle('open');
+}
+
+function closeMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('mobileOverlay');
+  menu.classList.remove('open');
+  overlay.classList.remove('open');
+}
+
+
+// Cards stagger animation on scroll
+function initCardStagger() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const cards = entry.target.querySelectorAll('.evento-card');
+        cards.forEach((card, i) => {
+          setTimeout(() => {
+            card.style.opacity = '0';
+            card.style.animationDelay = '0s';
+            card.classList.add('card-visible');
+          }, i * 120);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  const grid = document.getElementById('eventosGrid');
+  if (grid) observer.observe(grid);
+}
+
+// Init
+cargarEventos();
+buildLeaves();
+initAnimations();
+
+// ─── TANDA 2: PARALLAX ───
+(function() {
+  const heroBg = document.getElementById('heroBg');
+
+  function loop() {
+    if (heroBg) {
+      const scrollY = window.scrollY || window.pageYOffset;
+      heroBg.style.transform = 'translateY(' + (scrollY * 0.3) + 'px)';
+    }
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+
+  window.addEventListener('scroll', function() {
+    const artistasBg = document.querySelector('.artistas-bg');
+    if (artistasBg) {
+      const section = document.getElementById('artistas');
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        artistasBg.style.transform = 'translateY(' + (rect.top * 0.15) + 'px)';
+      }
+    }
+  }, { passive: true });
+
+})();
+
+</script>
+
+</body>
+</html>

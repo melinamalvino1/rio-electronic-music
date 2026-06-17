@@ -1,0 +1,35 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: simple_workflow
+
+media_folder: "img"
+public_folder: "img"
+
+collections:
+  - name: "eventos"
+    label: "Eventos"
+    files:
+      - name: "lista-eventos"
+        label: "Próximas Fechas"
+        file: "eventos/eventos.json"
+        fields:
+          - label: "Eventos"
+            name: "eventos"
+            widget: "list"
+            summary: "{{fields.fecha}} — {{fields.headliner}} ({{fields.pais}})"
+            fields:
+              - { label: "País", name: "pais", widget: "select", options: [
+                  { label: "Argentina", value: "AR" },
+                  { label: "Chile", value: "CL" },
+                  { label: "España", value: "ES" }
+                ] }
+              - { label: "Fecha (ej: 14 JUN)", name: "fecha", widget: "string" }
+              - { label: "Mes (ej: JUN)", name: "mes", widget: "string" }
+              - { label: "Subtítulo (ej: PREFERIADO)", name: "subtitulo", widget: "string", required: false }
+              - { label: "Headliner", name: "headliner", widget: "string" }
+              - { label: "Artistas (lista)", name: "artistas", widget: "list" }
+              - { label: "Flyer del evento", name: "imagen", widget: "image", media_folder: "/img", public_folder: "img" }
+              - { label: "Link de entradas (Bombo)", name: "linkEntradas", widget: "string" }
+              - { label: "Link VIP (opcional)", name: "linkVIP", widget: "string", required: false }
