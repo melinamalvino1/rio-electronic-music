@@ -4,6 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Río Electronic Music</title>
+<meta name="description" content="Río Electronic Music — la fiesta de electrónica más icónica de Argentina, Chile y España. Próximas fechas, line-ups y entradas.">
+<meta name="theme-color" content="#080907">
+<link rel="icon" type="image/png" href="img/logo-rio.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Río Electronic Music">
+<meta property="og:title" content="Río Electronic Music">
+<meta property="og:description" content="La fiesta de electrónica más icónica de Argentina, Chile y España. Próximas fechas, line-ups y entradas.">
+<meta property="og:image" content="https://rioelectronicmusic1.netlify.app/img/hero-bg.png">
+<meta property="og:url" content="https://rioelectronicmusic1.netlify.app/">
+<meta property="og:locale" content="es_AR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Río Electronic Music">
+<meta name="twitter:description" content="La fiesta de electrónica más icónica de Argentina, Chile y España.">
+<meta name="twitter:image" content="https://rioelectronicmusic1.netlify.app/img/hero-bg.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -220,8 +239,8 @@
 
   .hero-social-label {
     font-family: 'Oswald', sans-serif;
-    font-size: 0.55rem;
-    letter-spacing: 0.15em;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.75);
     text-align: center;
@@ -254,8 +273,8 @@
   }
 
   .scroll-label {
-    font-size: 0.55rem;
-    letter-spacing: 0.3em;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
     color: var(--crema-suave);
     text-transform: uppercase;
     opacity: 0.6;
@@ -763,11 +782,11 @@
   }
 
   .footer-info {
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
     color: var(--crema-suave);
     text-transform: uppercase;
-    opacity: 0.5;
+    opacity: 0.55;
     text-align: center;
   }
 
@@ -784,8 +803,9 @@
     }
     .nav-links { display: none; }
     section { padding: 70px 20px; }
-    .sobre-inner { grid-template-columns: 1fr; gap: 40px; }
-    .sobre-visual { display: none; }
+    .sobre-inner { grid-template-columns: 1fr; gap: 24px; }
+    .sobre-visual { order: -1; }
+    .sobre-img-frame { aspect-ratio: 4/3; }
     .eventos-grid { grid-template-columns: 1fr; }
     footer { padding: 30px 20px; flex-direction: column; text-align: center; }
     .eventos-header { flex-direction: column; align-items: flex-start; }
@@ -981,24 +1001,6 @@
     margin-bottom: 48px;
   }
 
-  .artistas-lista {
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.4rem);
-    font-weight: 400;
-    color: var(--crema);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    line-height: 1.9;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
-  }
-
-  .artistas-lista span {
-    color: var(--dorado);
-    opacity: 0.6;
-    margin: 0 6px;
-    font-size: 0.8em;
-  }
-
   .contacto-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1113,27 +1115,6 @@
     }
   }
 
-  @media (max-width: 768px) {
-    #sobre {
-      position: relative;
-    }
-    #sobre::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('img/sobre-foto.png');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.12;
-      z-index: 0;
-      pointer-events: none;
-    }
-    #sobre .sobre-inner {
-      position: relative;
-      z-index: 1;
-    }
-  }
-
   #contacto {
     position: relative;
     overflow: hidden;
@@ -1168,6 +1149,10 @@
       flex-direction: column;
       gap: 16px;
       align-items: center;
+    }
+
+    .hero-social-label {
+      font-size: 0.74rem;
     }
 
     .hero-socials-group {
@@ -1273,10 +1258,6 @@
   }
 
   /* ─── MARQUEE ARTISTAS ─── */
-  .artistas-lista {
-    display: none !important;
-  }
-
   .artistas-marquee-wrapper {
     overflow: hidden;
     position: relative;
@@ -1373,6 +1354,7 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="#eventos" onclick="closeMenu()">Próximas Fechas</a></li>
     <li><a href="#sobre" onclick="closeMenu()">Nosotros</a></li>
+    <li><a href="#ecosistema" onclick="closeMenu()">Ecosistema</a></li>
     <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()" aria-label="Menú">
@@ -1389,6 +1371,7 @@
   <ul>
     <li><a href="#eventos" onclick="closeMenu()">Próximas Fechas</a></li>
     <li><a href="#sobre" onclick="closeMenu()">Nosotros</a></li>
+    <li><a href="#ecosistema" onclick="closeMenu()">Ecosistema</a></li>
     <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
   </ul>
 </div>
@@ -1410,13 +1393,19 @@
     
     <div class="hero-socials hero-anim hero-fade-up" style="animation-delay:0.75s">
 
-      <!-- Grupo 1: Río principal -->
+      <!-- Grupo: marca + Instagram por país (etiquetados para que no se confundan) -->
       <div class="hero-socials-group">
         <a href="https://www.instagram.com/rioelectronicmusic/" target="_blank" class="hero-social-item">
           <div class="hero-social-circle">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
           </div>
-          <span class="hero-social-label">Argentina</span>
+          <span class="hero-social-label">IG Argentina</span>
+        </a>
+        <a href="https://tr.ee/jq47GX-98a" target="_blank" class="hero-social-item">
+          <div class="hero-social-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <span class="hero-social-label">IG Chile</span>
         </a>
         <a href="https://www.tiktok.com/@rioelectronicmusic?_t=zm-8wpjmrte6tn&_r=1" target="_blank" class="hero-social-item">
           <div class="hero-social-circle">
@@ -1429,37 +1418,6 @@
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </div>
           <span class="hero-social-label">Río TV</span>
-        </a>
-      </div>
-
-      <!-- Divisor -->
-      <div class="hero-socials-divider"></div>
-
-      <!-- Grupo 2: Ecosistema -->
-      <div class="hero-socials-group">
-        <a href="https://tr.ee/XBCBr3H1CI" target="_blank" class="hero-social-item">
-          <div class="hero-social-circle">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5a7.5 7.5 0 1 1 0 15 7.5 7.5 0 0 1 0-15zm0 2.5a5 5 0 1 0 0 10A5 5 0 0 0 12 7zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
-          </div>
-          <span class="hero-social-label">Music Label</span>
-        </a>
-        <a href="https://tr.ee/904EF9VFOf" target="_blank" class="hero-social-item">
-          <div class="hero-social-circle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
-          </div>
-          <span class="hero-social-label">Label IG</span>
-        </a>
-        <a href="https://tr.ee/jq47GX-98a" target="_blank" class="hero-social-item">
-          <div class="hero-social-circle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
-          </div>
-          <span class="hero-social-label">Chile IG</span>
-        </a>
-        <a href="https://tr.ee/mF1VLbx1WH" target="_blank" class="hero-social-item">
-          <div class="hero-social-circle">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l7 4.5-7 4.5z"/></svg>
-          </div>
-          <span class="hero-social-label">Ingrv</span>
         </a>
       </div>
 
@@ -1536,11 +1494,78 @@
   </div>
 </section>
 
-<!-- WAVE: Sobre → Artistas -->
+<!-- WAVE: Sobre → Ecosistema -->
 <div class="wave-divider">
   <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="1440" height="80" fill="#080907"/>
     <path d="M0,35 C200,80 500,5 800,55 C1050,90 1280,20 1440,50 L1440,0 L0,0 Z" fill="#111a0f"/>
+  </svg>
+</div>
+
+<!-- ECOSISTEMA -->
+<section id="ecosistema">
+  <div class="fade-up">
+    <div class="section-eyebrow">Más allá de la fiesta</div>
+    <h2 class="section-title">Ecosistema Río</h2>
+    <p style="font-size:0.9rem; color:var(--texto); line-height:1.7; max-width:560px;">Río Electronic Music es la fiesta, pero también el sello, la comunidad y los proyectos que crecieron alrededor. Así se conecta todo.</p>
+    <div class="ecosistema-grid">
+
+      <div class="eco-card">
+        <div class="eco-card-header">
+          <div class="eco-card-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;color:var(--crema);"><path d="M14.668 24c-3.857 0-6.935-3.039-6.935-6.974a6.98 6.98 0 011.812-4.714l-4.714 4.714-2.474-2.474 5.319-5.26c.72-.72 1.09-1.656 1.09-2.688V0h3.487v6.604c0 2.026-.72 3.74-2.123 5.143l-.156.156a6.945 6.945 0 014.694-1.812c3.955 0 6.975 3.136 6.975 6.935A6.943 6.943 0 0114.668 24zm0-10.714c-2.123 0-3.779 1.753-3.779 3.74 0 2.045 1.675 3.78 3.78 3.78a3.804 3.804 0 003.818-3.78c0-2.065-1.715-3.74-3.819-3.74Z"/></svg>
+          </div>
+          <div class="eco-card-name">Río Music Label</div>
+        </div>
+        <div class="eco-card-desc">El sello discográfico de Río: lanzamientos originales, remixes y compilados de los artistas que pasan por nuestras fiestas.</div>
+        <div class="eco-card-links">
+          <a href="https://www.beatport.com/es/label/rio-music/122264" target="_blank" class="eco-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.668 24c-3.857 0-6.935-3.039-6.935-6.974a6.98 6.98 0 011.812-4.714l-4.714 4.714-2.474-2.474 5.319-5.26c.72-.72 1.09-1.656 1.09-2.688V0h3.487v6.604c0 2.026-.72 3.74-2.123 5.143l-.156.156a6.945 6.945 0 014.694-1.812c3.955 0 6.975 3.136 6.975 6.935A6.943 6.943 0 0114.668 24zm0-10.714c-2.123 0-3.779 1.753-3.779 3.74 0 2.045 1.675 3.78 3.78 3.78a3.804 3.804 0 003.818-3.78c0-2.065-1.715-3.74-3.819-3.74Z"/></svg>
+            Ver en Beatport
+          </a>
+        </div>
+      </div>
+
+      <div class="eco-card">
+        <div class="eco-card-header">
+          <div class="eco-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:20px;height:20px;color:var(--crema);"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="eco-card-name">Label IG</div>
+        </div>
+        <div class="eco-card-desc">La cuenta de Instagram del sello: adelantos de lanzamientos, detrás de escena y novedades de Río Music Label.</div>
+        <div class="eco-card-links">
+          <a href="https://tr.ee/904EF9VFOf" target="_blank" class="eco-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            Seguir
+          </a>
+        </div>
+      </div>
+
+      <div class="eco-card">
+        <div class="eco-card-header">
+          <div class="eco-card-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;color:var(--crema);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l7 4.5-7 4.5z"/></svg>
+          </div>
+          <div class="eco-card-name">Ingrv</div>
+        </div>
+        <div class="eco-card-desc">Escuchá los lanzamientos de Río Music Label en la plataforma que prefieras: Spotify, Beatport, Apple Music, Tidal, Deezer y más, todo desde un solo link.</div>
+        <div class="eco-card-links">
+          <a href="https://tr.ee/mF1VLbx1WH" target="_blank" class="eco-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            Visitar
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WAVE: Ecosistema → Artistas -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1440" height="60" fill="#080907"/>
   </svg>
 </div>
 
@@ -1554,9 +1579,6 @@
       <div class="artistas-marquee-track">
         <span class="artistas-marquee-item">SOLOMUN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">TALE OF US</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MICHAEL BIBI</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">BORIS BREJCHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADRIATIQUE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADAM BEYER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN SUMMIT</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMES HYPE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ANOTR</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MOCHAKK</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAU P</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PAWSA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMIE JONES</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN DIGWEED</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SASHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FISHER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LOCO DICE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLAPTONE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">GUY J</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FRANKY RIZARDO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">NICK WARREN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SVEN VÄTH</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LUCIANO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">WADE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLOONEE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAX STYLER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">POPOF</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DENNIS CRUZ</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ILARIO ALICANTE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CHRIS STUSSY</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PACO OSUNA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DUBFIRE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">KOLOMBO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SOLOMUN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">TALE OF US</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MICHAEL BIBI</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">BORIS BREJCHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADRIATIQUE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADAM BEYER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN SUMMIT</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMES HYPE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ANOTR</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MOCHAKK</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAU P</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PAWSA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMIE JONES</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN DIGWEED</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SASHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FISHER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LOCO DICE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLAPTONE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">GUY J</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FRANKY RIZARDO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">NICK WARREN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SVEN VÄTH</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LUCIANO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">WADE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLOONEE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAX STYLER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">POPOF</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DENNIS CRUZ</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ILARIO ALICANTE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CHRIS STUSSY</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PACO OSUNA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DUBFIRE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">KOLOMBO</span><span class="artistas-marquee-dot">·</span>
       </div>
-    </div>
-    <div class="artistas-lista">
-      SOLOMUN <span>·</span> TALE OF US <span>·</span> MICHAEL BIBI <span>·</span> BORIS BREJCHA <span>·</span> ADRIATIQUE <span>·</span> ADAM BEYER <span>·</span> JOHN SUMMIT <span>·</span> JAMES HYPE <span>·</span> ANOTR <span>·</span> MOCHAKK <span>·</span> MAU P <span>·</span> PAWSA <span>·</span> JAMIE JONES <span>·</span> JOHN DIGWEED <span>·</span> SASHA <span>·</span> FISHER <span>·</span> LOCO DICE <span>·</span> CLAPTONE <span>·</span> GUY J <span>·</span> FRANKY RIZARDO <span>·</span> NICK WARREN <span>·</span> SVEN VÄTH <span>·</span> LUCIANO <span>·</span> WADE <span>·</span> CLOONEE <span>·</span> MAX STYLER <span>·</span> POPOF <span>·</span> DENNIS CRUZ <span>·</span> ILARIO ALICANTE <span>·</span> CHRIS STUSSY <span>·</span> PACO OSUNA <span>·</span> DUBFIRE <span>·</span> KOLOMBO <span>·</span> ENTRE OTROS.
     </div>
   </div>
 </section>
