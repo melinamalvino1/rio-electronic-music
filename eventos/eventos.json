@@ -1,26 +1,31 @@
 {
   "eventos": [
     {
-      "pais": "AR",
-      "fecha": "14 JUN",
-      "mes": "JUN",
-      "subtitulo": "PREFERIADO",
-      "headliner": "OSCAR L",
-      "artistas": ["OSCAR L", "MATT", "JUAN BRIZUELA"],
-      "imagen": "img/flyer-14jun.png",
-      "linkEntradas": "https://wearebombo.app.link/d9IGlcQYU3b",
-      "linkVIP": ""
-    },
-    {
-      "pais": "AR",
-      "fecha": "08 JUL",
-      "mes": "JUL",
-      "subtitulo": "PRE FERIADO",
-      "headliner": "MORITZ HOFBAUER",
-      "artistas": ["MORITZ HOFBAUER", "TOMAS OTERO"],
+      "linkVIP": "",
       "imagen": "img/flyer-08jul.png",
       "linkEntradas": "https://wearebombo.app.link/ouoUasRYU3b",
-      "linkVIP": ""
+      "artistas": [
+        "MORITZ HOFBAUER",
+        "TOMAS OTERO"
+      ],
+      "subtitulo": "PRE FERIADO",
+      "mes": "JUL",
+      "pais": "AR",
+      "fecha": "08 JUL",
+      "headliner": "MORITZ HOFBAUER"
+    },
+    {
+      "pais": "CL",
+      "fecha": "16 AGO",
+      "mes": "JUN",
+      "imagen": "img/captura-de-pantalla-2026-06-17-a-la-s-17.09.10.png",
+      "linkEntradas": "https://app.byearly.com/eventsRefresh/j9LWbAgs7wCxXsPscX64",
+      "headliner": "KOLOMBO",
+      "artistas": [
+        "KOLOMBO",
+        "MALÓNE MOREZ",
+        "MUTER"
+      ]
     }
   ]
 }
