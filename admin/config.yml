@@ -2,6 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
+logo_url: "https://rioelectronicmusic1.netlify.app/img/logo-rio.png"
+
 publish_mode: simple
 
 media_folder: "img"
@@ -18,6 +20,7 @@ collections:
           - label: "Eventos"
             name: "eventos"
             widget: "list"
+            hint: "Los cambios no se guardan hasta que apretás 'Publish changes' arriba a la derecha. Si borraste un evento por error, recargá la página sin guardar y vuelve a aparecer."
             summary: "{{fields.fecha}} — {{fields.headliner}} ({{fields.pais}})"
             fields:
               - { label: "País", name: "pais", widget: "select", options: [
@@ -31,5 +34,4 @@ collections:
               - { label: "Headliner", name: "headliner", widget: "string" }
               - { label: "Artistas (lista)", name: "artistas", widget: "list" }
               - { label: "Flyer del evento", name: "imagen", widget: "image", media_folder: "/img", public_folder: "img" }
-              - { label: "Link de entradas (Bombo)", name: "linkEntradas", widget: "string" }
-              - { label: "Link VIP (opcional)", name: "linkVIP", widget: "string", required: false }
+              - { label: "Link de entradas", name: "linkEntradas", widget: "string" }
