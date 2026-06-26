@@ -51,6 +51,21 @@
       "pais": "AR",
       "fecha": "30 JUL",
       "headliner": "Nacho Bolognani"
+    },
+    {
+      "localidad": "Punta Carrasco",
+      "imagen": "img/13-sept-max-styler.png",
+      "linkEntradas": "https://wearebombo.app.link/R28piiiVh4b",
+      "artistas": [
+        "Max Styler",
+        "Tobias Gerard",
+        "Cromind"
+      ],
+      "subtitulo": "",
+      "mes": "AGO",
+      "pais": "AR",
+      "fecha": "7 AGO",
+      "headliner": "Max Styler"
     }
   ]
 }
