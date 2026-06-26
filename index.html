@@ -461,6 +461,14 @@
     margin-bottom: 6px;
   }
 
+  .evento-localidad {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--crema-suave);
+    margin-bottom: 6px;
+    opacity: 0.85;
+  }
+
   .evento-subtitulo {
     font-size: 0.65rem;
     letter-spacing: 0.3em;
@@ -1452,6 +1460,9 @@
         <button class="pais-btn" data-pais="ES" onclick="filtrarPais('ES', this)">
           <span class="pais-flag">🇪🇸</span> España
         </button>
+        <button class="pais-btn" data-pais="PE" onclick="filtrarPais('PE', this)">
+          <span class="pais-flag">🇵🇪</span> Perú
+        </button>
       </div>
       <div class="mes-filtro" id="mesFiltro">
         <button class="mes-btn active" data-mes="TODOS" onclick="filtrarMes(this)">Todos</button>
@@ -1707,6 +1718,7 @@ function renderEventos() {
       <div class="evento-card-overlay"></div>
       <div class="evento-card-info">
         <div class="evento-fecha">${e.fecha}</div>
+        ${e.localidad ? `<div class="evento-localidad">${e.localidad}</div>` : ''}
         <div class="evento-subtitulo">${e.subtitulo}</div>
         <ul class="evento-artistas">
           ${e.artistas.map(a => `<li class="${a === e.headliner ? 'headliner' : ''}">${a}</li>`).join('')}
