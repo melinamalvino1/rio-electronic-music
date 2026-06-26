@@ -66,6 +66,21 @@
       "pais": "AR",
       "fecha": "7 AGO",
       "headliner": "Max Styler"
+    },
+    {
+      "pais": "AR",
+      "localidad": "Pergamino",
+      "fecha": "8 AGO",
+      "mes": "AGO",
+      "headliner": "Nicolas Taboada",
+      "artistas": [
+        "Nicolas Taboada",
+        "Andres Koller",
+        "Eze Fernandez",
+        "Eros"
+      ],
+      "imagen": "img/8-ago-nicolas-taboada.png",
+      "linkEntradas": "https://venti.com.ar/evento/nicolas-taboada-andres-koller-eze-fernandez-eros-x-rio-electronic-music-y-new-vision"
     }
   ]
 }
