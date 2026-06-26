@@ -98,19 +98,17 @@
       "linkEntradas": "https://www.vastiontickets.com/evento/rio-pres-rafa-barrios-harvy-valencia"
     },
     {
-      "pais": "AR",
+      "pais": "CL",
       "fecha": "13 SEPT",
       "mes": "SEPT",
-      "localidad": "Mendoza",
-      "headliner": "Max Styler",
+      "localidad": "",
+      "headliner": "Ayybo",
       "artistas": [
-        "Max Styler",
-        "Rama Mendez & Synastry",
-        "RMZD & ChackBeat",
-        "KATIWEX"
+        "Ayybo",
+        "Victor Lou & MoreTBA"
       ],
-      "imagen": "img/13-sept-max-styler.png",
-      "linkEntradas": "https://wearebombo.app.link/s8MrgooVh4b"
+      "imagen": "img/captura-de-pantalla-2026-06-26-a-la-s-15.18.03.png",
+      "linkEntradas": "https://app.byearly.com/eventsRefresh/fqo9loHEnLrbbYqh6SE6"
     }
   ]
 }
