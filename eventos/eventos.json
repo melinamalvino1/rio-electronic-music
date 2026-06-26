@@ -96,6 +96,21 @@
       ],
       "imagen": "img/15-ago-rafa-barrios.png",
       "linkEntradas": "https://www.vastiontickets.com/evento/rio-pres-rafa-barrios-harvy-valencia"
+    },
+    {
+      "pais": "AR",
+      "fecha": "13 SEPT",
+      "mes": "SEPT",
+      "localidad": "Mendoza",
+      "headliner": "Max Styler",
+      "artistas": [
+        "Max Styler",
+        "Rama Mendez & Synastry",
+        "RMZD & ChackBeat",
+        "KATIWEX"
+      ],
+      "imagen": "img/13-sept-max-styler.png",
+      "linkEntradas": "https://wearebombo.app.link/s8MrgooVh4b"
     }
   ]
 }
