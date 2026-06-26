@@ -37,6 +37,20 @@
       ],
       "imagen": "img/25-jul-viviana.png",
       "linkEntradas": "https://www.passline.com/eventos/rio-electronic-presenta-viviana-casanova-silvestre-kg-en-vina-del-mar"
+    },
+    {
+      "localidad": "Bariloche",
+      "imagen": "img/30-jul-nacho-bolognani.png",
+      "linkEntradas": "https://wearebombo.app.link/oKEho1fVh4b",
+      "artistas": [
+        "Nacho Bolognani",
+        "Bonjour Berlin"
+      ],
+      "subtitulo": "After Ski",
+      "mes": "JUL",
+      "pais": "AR",
+      "fecha": "30 JUL",
+      "headliner": "Nacho Bolognani"
     }
   ]
 }
