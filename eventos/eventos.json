@@ -1,20 +1,6 @@
 {
   "eventos": [
     {
-      "linkVIP": "",
-      "imagen": "img/flyer-08jul.png",
-      "linkEntradas": "https://wearebombo.app.link/ouoUasRYU3b",
-      "artistas": [
-        "MORITZ HOFBAUER",
-        "TOMAS OTERO"
-      ],
-      "subtitulo": "PRE FERIADO",
-      "mes": "JUL",
-      "pais": "AR",
-      "fecha": "08 JUL",
-      "headliner": "MORITZ HOFBAUER"
-    },
-    {
       "localidad": "Buenos Aires - Punta Carrasco",
       "imagen": "img/8-jul-moritz.png",
       "linkEntradas": "https://wearebombo.app.link/675wpu9Uh4b",
@@ -26,6 +12,31 @@
       "pais": "AR",
       "fecha": "8 JUL ",
       "headliner": "MORITZ HOFBAUER"
+    },
+    {
+      "pais": "AR",
+      "fecha": "24 JUL",
+      "mes": "JUL",
+      "localidad": "Cordoba",
+      "headliner": "MUTER",
+      "artistas": [
+        "MUTER"
+      ],
+      "imagen": "img/24-jul-muter.png",
+      "linkEntradas": "https://wearebombo.app.link/HxfJE8bVh4b"
+    },
+    {
+      "pais": "CL",
+      "fecha": "25 JUL",
+      "localidad": "Viña del Mar",
+      "mes": "JUL",
+      "headliner": "Viviana Casanova",
+      "artistas": [
+        "Viviana Casanova",
+        "Silvestre KG (Open Call)"
+      ],
+      "imagen": "img/25-jul-viviana.png",
+      "linkEntradas": "https://www.passline.com/eventos/rio-electronic-presenta-viviana-casanova-silvestre-kg-en-vina-del-mar"
     }
   ]
 }
