@@ -6,7 +6,7 @@
 <title>Río Electronic Music</title>
 <meta name="description" content="Río Electronic Music — la fiesta de electrónica más icónica de Argentina, Chile y España. Próximas fechas, line-ups y entradas.">
 <meta name="theme-color" content="#080907">
-<link rel="icon" type="image/png" href="img/logo-rio.png">
+<link rel="icon" type="image/png" href="img/favicon-rio.png">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -70,6 +70,48 @@
 
   .nav-logo {
     display: none;
+  }
+
+  /* ─── LANGUAGE SWITCH ─── */
+  .lang-switch {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 101;
+    display: flex;
+    gap: 10px;
+  }
+
+  .lang-switch button {
+    background: none;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--crema-suave);
+    opacity: 0.55;
+    cursor: pointer;
+    padding: 4px 2px;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .lang-switch button:hover {
+    opacity: 0.85;
+  }
+
+  .lang-switch button.active {
+    color: var(--dorado);
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .lang-switch {
+      top: 14px;
+      right: 14px;
+    }
+    .lang-switch button {
+      font-size: 0.62rem;
+    }
   }
 
   .nav-links {
@@ -425,120 +467,11 @@
     aspect-ratio: 3/4;
     object-fit: cover;
     display: block;
-    transition: transform 0.6s ease, filter 0.6s ease;
+    transition: transform 0.6s ease;
   }
 
   .evento-card:hover .evento-card-flyer {
-    transform: scale(1.05);
-    filter: brightness(0.5);
-  }
-
-  .evento-card-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(8,9,7,0.95) 0%, rgba(8,9,7,0.4) 40%, transparent 70%);
-    transition: opacity 0.4s;
-  }
-
-  .evento-card:hover .evento-card-overlay {
-    background: linear-gradient(to top, rgba(8,9,7,0.98) 0%, rgba(8,9,7,0.7) 50%, rgba(8,9,7,0.4) 100%);
-  }
-
-  .evento-card-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 28px 24px;
-  }
-
-  .evento-fecha {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.25em;
-    color: var(--dorado);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .evento-localidad {
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    color: var(--crema-suave);
-    margin-bottom: 6px;
-    opacity: 0.85;
-  }
-
-  .evento-subtitulo {
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    color: var(--crema-suave);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    opacity: 0.7;
-  }
-
-  .evento-artistas {
-    list-style: none;
-    margin-bottom: 20px;
-  }
-
-  .evento-artistas li {
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    font-weight: 700;
-    color: var(--crema);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    line-height: 1.15;
-  }
-
-  .evento-artistas li.headliner {
-    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-  }
-
-  .evento-ctas {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s 0.1s;
-  }
-
-  .evento-card:hover .evento-ctas {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .btn-entradas {
-    display: block;
-    text-align: center;
-    padding: 12px;
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--crema);
-    color: var(--crema);
-    transition: all 0.3s;
-    background: rgba(8,9,7,0.5);
-  }
-
-  .btn-entradas:hover {
-    background: var(--crema);
-    color: var(--negro);
-  }
-
-  .btn-entradas.vip {
-    border-color: var(--dorado);
-    color: var(--dorado);
-  }
-
-  .btn-entradas.vip:hover {
-    background: var(--dorado);
-    color: var(--negro);
+    transform: scale(1.03);
   }
 
   /* No hay eventos */
@@ -557,6 +490,8 @@
   #sobre {
     border-top: none;
     background: var(--selva);
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   .sobre-inner {
@@ -1356,10 +1291,10 @@
 <nav>
   <a href="#" class="nav-logo"></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#eventos" onclick="closeMenu()">Próximas Fechas</a></li>
-    <li><a href="#sobre" onclick="closeMenu()">Nosotros</a></li>
-    <li><a href="#ecosistema" onclick="closeMenu()">Ecosistema</a></li>
-    <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
+    <li><a href="#eventos" onclick="closeMenu()" data-i18n="nav_eventos">Próximas Fechas</a></li>
+    <li><a href="#sobre" onclick="closeMenu()" data-i18n="nav_nosotros">Nosotros</a></li>
+    <li><a href="#ecosistema" onclick="closeMenu()" data-i18n="nav_ecosistema">Ecosistema</a></li>
+    <li><a href="#contacto" onclick="closeMenu()" data-i18n="nav_contacto">Contacto</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" onclick="toggleMenu()" aria-label="Menú">
     <span></span>
@@ -1369,14 +1304,19 @@
 </nav>
 
 <!-- Mobile menu overlay -->
+<div class="lang-switch" id="langSwitch">
+  <button onclick="setLang('es')" data-lang-btn="es" class="active">ESP</button>
+  <button onclick="setLang('en')" data-lang-btn="en">ENG</button>
+</div>
+
 <div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMenu()"></div>
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="closeMenu()">✕</button>
   <ul>
-    <li><a href="#eventos" onclick="closeMenu()">Próximas Fechas</a></li>
-    <li><a href="#sobre" onclick="closeMenu()">Nosotros</a></li>
-    <li><a href="#ecosistema" onclick="closeMenu()">Ecosistema</a></li>
-    <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
+    <li><a href="#eventos" onclick="closeMenu()" data-i18n="nav_eventos">Próximas Fechas</a></li>
+    <li><a href="#sobre" onclick="closeMenu()" data-i18n="nav_nosotros">Nosotros</a></li>
+    <li><a href="#ecosistema" onclick="closeMenu()" data-i18n="nav_ecosistema">Ecosistema</a></li>
+    <li><a href="#contacto" onclick="closeMenu()" data-i18n="nav_contacto">Contacto</a></li>
   </ul>
 </div>
 
@@ -1392,7 +1332,7 @@
     <img class="hero-logo-img" src="img/logo-rio.png" alt="Río Electronic Music">
     <div class="hero-inline-message">
       <div class="hero-message-title hero-anim hero-blur-reveal" style="animation-delay:0.3s">Río Electronic Music</div>
-      <div class="hero-message-sub hero-anim hero-blur-reveal" style="animation-delay:0.5s">La fiesta de electrónica más icónica</div>
+      <div class="hero-message-sub hero-anim hero-blur-reveal" style="animation-delay:0.5s" data-i18n="hero_tagline">La fiesta de electrónica más icónica</div>
     </div>
     
     <div class="hero-socials hero-anim hero-fade-up" style="animation-delay:0.75s">
@@ -1427,7 +1367,7 @@
 
       <div class="hero-scroll hero-anim hero-fade-up" style="animation-delay:1s" onclick="document.getElementById('eventos').scrollIntoView({behavior:'smooth'})">
         <div class="scroll-line"></div>
-        <span class="scroll-label">Scroll</span>
+        <span class="scroll-label" data-i18n="scroll_label">Scroll</span>
       </div>
 
     </div>
@@ -1446,32 +1386,19 @@
 <section id="eventos">
   <div class="eventos-header fade-up">
     <div>
-      <div class="section-eyebrow">Agenda</div>
-      <h2 class="section-title" style="margin-bottom:0">Próximas Fechas</h2>
+      <div class="section-eyebrow" data-i18n="eventos_eyebrow">Agenda</div>
+      <h2 class="section-title" style="margin-bottom:0" data-i18n="eventos_title">Próximas Fechas</h2>
     </div>
     <div class="filtros-wrapper">
-      <div class="pais-filtro" id="paisFiltro">
-        <button class="pais-btn active" data-pais="AR" onclick="filtrarPais('AR', this)">
-          <span class="pais-flag">🇦🇷</span> Argentina
-        </button>
-        <button class="pais-btn" data-pais="CL" onclick="filtrarPais('CL', this)">
-          <span class="pais-flag">🇨🇱</span> Chile
-        </button>
-        <button class="pais-btn" data-pais="ES" onclick="filtrarPais('ES', this)">
-          <span class="pais-flag">🇪🇸</span> España
-        </button>
-        <button class="pais-btn" data-pais="PE" onclick="filtrarPais('PE', this)">
-          <span class="pais-flag">🇵🇪</span> Perú
-        </button>
-      </div>
+      <div class="pais-filtro" id="paisFiltro"></div>
       <div class="mes-filtro" id="mesFiltro">
-        <button class="mes-btn active" data-mes="TODOS" onclick="filtrarMes(this)">Todos</button>
+        <button class="mes-btn active" data-mes="TODOS" onclick="filtrarMes(this)" data-i18n="mes_todos">Todos</button>
       </div>
     </div>
   </div>
 
   <div class="eventos-grid fade-up" id="eventosGrid"></div>
-  <div class="no-eventos" id="noEventos">No hay eventos programados para este período</div>
+  <div class="no-eventos" id="noEventos" data-i18n="no_eventos">No hay eventos programados para este período</div>
 </section>
 
 </div>
@@ -1489,10 +1416,10 @@
 <section id="sobre">
   <div class="sobre-inner fade-up">
     <div class="sobre-texto">
-      <div class="section-eyebrow">La experiencia</div>
-      <h2 class="section-title">Sobre Río</h2>
-      <p>Río Electronic Music nació en Buenos Aires y se convirtió en una de las fiestas de música electrónica más icónicas de Latinoamérica. Una propuesta única que fusiona naturaleza, río y la mejor música del mundo.</p>
-      <p>Desde sus inicios en Punta Carrasco, Río EM recibe a los mejores DJs internacionales en locaciones únicas — una experiencia que mezcla lo veraniego con lo subterráneo, lo internacional con lo local. Hoy presente en Argentina, Chile y España.</p>
+      <div class="section-eyebrow" data-i18n="sobre_eyebrow">La experiencia</div>
+      <h2 class="section-title" data-i18n="sobre_title">Sobre Río</h2>
+      <p data-i18n="sobre_p1">Río Electronic Music nació en Buenos Aires y se convirtió en una de las fiestas de música electrónica más icónicas de Latinoamérica. Una propuesta única que fusiona naturaleza, río y la mejor música del mundo.</p>
+      <p data-i18n="sobre_p2">Desde sus inicios en Punta Carrasco, Río EM recibe a los mejores DJs internacionales en locaciones únicas — una experiencia que mezcla lo veraniego con lo subterráneo, lo internacional con lo local. Hoy presente en Argentina, Chile y España.</p>
     </div>
     <div class="sobre-visual">
       <div class="sobre-img-frame">
@@ -1513,9 +1440,9 @@
 <!-- ECOSISTEMA -->
 <section id="ecosistema">
   <div class="fade-up">
-    <div class="section-eyebrow">Más allá de la fiesta</div>
-    <h2 class="section-title">Ecosistema Río</h2>
-    <p style="font-size:0.9rem; color:var(--texto); line-height:1.7; max-width:560px;">Río Electronic Music es la fiesta, pero también el sello, la comunidad y los proyectos que crecieron alrededor. Así se conecta todo.</p>
+    <div class="section-eyebrow" data-i18n="eco_eyebrow">Más allá de la fiesta</div>
+    <h2 class="section-title" data-i18n="eco_title">Ecosistema Río</h2>
+    <p style="font-size:0.9rem; color:var(--texto); line-height:1.7; max-width:560px;" data-i18n="eco_intro">Río Electronic Music es la fiesta, pero también el sello, la comunidad y los proyectos que crecieron alrededor. Así se conecta todo.</p>
     <div class="ecosistema-grid">
 
       <div class="eco-card">
@@ -1525,11 +1452,11 @@
           </div>
           <div class="eco-card-name">Río Music Label</div>
         </div>
-        <div class="eco-card-desc">El sello discográfico de Río: lanzamientos originales, remixes y compilados de los artistas que pasan por nuestras fiestas.</div>
+        <div class="eco-card-desc" data-i18n="eco_label_desc">El sello discográfico de Río: lanzamientos originales, remixes y compilados de los artistas que pasan por nuestras fiestas.</div>
         <div class="eco-card-links">
           <a href="https://www.beatport.com/es/label/rio-music/122264" target="_blank" class="eco-link">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.668 24c-3.857 0-6.935-3.039-6.935-6.974a6.98 6.98 0 011.812-4.714l-4.714 4.714-2.474-2.474 5.319-5.26c.72-.72 1.09-1.656 1.09-2.688V0h3.487v6.604c0 2.026-.72 3.74-2.123 5.143l-.156.156a6.945 6.945 0 014.694-1.812c3.955 0 6.975 3.136 6.975 6.935A6.943 6.943 0 0114.668 24zm0-10.714c-2.123 0-3.779 1.753-3.779 3.74 0 2.045 1.675 3.78 3.78 3.78a3.804 3.804 0 003.818-3.78c0-2.065-1.715-3.74-3.819-3.74Z"/></svg>
-            Ver en Beatport
+            <span data-i18n="eco_link_beatport">Ver en Beatport</span>
           </a>
         </div>
       </div>
@@ -1541,11 +1468,11 @@
           </div>
           <div class="eco-card-name">Label IG</div>
         </div>
-        <div class="eco-card-desc">La cuenta de Instagram del sello: adelantos de lanzamientos, detrás de escena y novedades de Río Music Label.</div>
+        <div class="eco-card-desc" data-i18n="eco_labelig_desc">La cuenta de Instagram del sello: adelantos de lanzamientos, detrás de escena y novedades de Río Music Label.</div>
         <div class="eco-card-links">
           <a href="https://tr.ee/904EF9VFOf" target="_blank" class="eco-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-            Seguir
+            <span data-i18n="eco_link_seguir">Seguir</span>
           </a>
         </div>
       </div>
@@ -1557,11 +1484,11 @@
           </div>
           <div class="eco-card-name">Ingrv</div>
         </div>
-        <div class="eco-card-desc">Escuchá los lanzamientos de Río Music Label en la plataforma que prefieras: Spotify, Beatport, Apple Music, Tidal, Deezer y más, todo desde un solo link.</div>
+        <div class="eco-card-desc" data-i18n="eco_ingrv_desc">Escuchá los lanzamientos de Río Music Label en la plataforma que prefieras: Spotify, Beatport, Apple Music, Tidal, Deezer y más, todo desde un solo link.</div>
         <div class="eco-card-links">
           <a href="https://tr.ee/mF1VLbx1WH" target="_blank" class="eco-link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-            Visitar
+            <span data-i18n="eco_link_visitar">Visitar</span>
           </a>
         </div>
       </div>
@@ -1582,7 +1509,7 @@
   <div class="artistas-bg"></div>
   <div class="artistas-bg-overlay"></div>
   <div class="artistas-inner fade-up">
-    <h2 class="artistas-heading">Artistas Destacados</h2>
+    <h2 class="artistas-heading" data-i18n="artistas_heading">Artistas Destacados</h2>
     <div class="artistas-marquee-wrapper">
       <div class="artistas-marquee-track">
         <span class="artistas-marquee-item">SOLOMUN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">TALE OF US</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MICHAEL BIBI</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">BORIS BREJCHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADRIATIQUE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADAM BEYER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN SUMMIT</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMES HYPE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ANOTR</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MOCHAKK</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAU P</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PAWSA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMIE JONES</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN DIGWEED</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SASHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FISHER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LOCO DICE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLAPTONE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">GUY J</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FRANKY RIZARDO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">NICK WARREN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SVEN VÄTH</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LUCIANO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">WADE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLOONEE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAX STYLER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">POPOF</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DENNIS CRUZ</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ILARIO ALICANTE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CHRIS STUSSY</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PACO OSUNA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DUBFIRE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">KOLOMBO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SOLOMUN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">TALE OF US</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MICHAEL BIBI</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">BORIS BREJCHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADRIATIQUE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ADAM BEYER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN SUMMIT</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMES HYPE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ANOTR</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MOCHAKK</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAU P</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PAWSA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JAMIE JONES</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">JOHN DIGWEED</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SASHA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FISHER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LOCO DICE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLAPTONE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">GUY J</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">FRANKY RIZARDO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">NICK WARREN</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">SVEN VÄTH</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">LUCIANO</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">WADE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CLOONEE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">MAX STYLER</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">POPOF</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DENNIS CRUZ</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">ILARIO ALICANTE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">CHRIS STUSSY</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">PACO OSUNA</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">DUBFIRE</span><span class="artistas-marquee-dot">·</span><span class="artistas-marquee-item">KOLOMBO</span><span class="artistas-marquee-dot">·</span>
@@ -1605,14 +1532,14 @@
   <div class="fade-up">
     <div class="contacto-grid">
       <div class="contacto-left">
-        <div class="section-eyebrow">Contacto</div>
-        <h2 class="section-title">No Te Pierdas Nada</h2>
-        <p style="font-size:0.85rem; color:var(--texto); line-height:1.7; max-width:400px;">Suscribite para recibir la agenda de eventos, lanzamientos y novedades de Río Electronic Music.</p>
+        <div class="section-eyebrow" data-i18n="contacto_eyebrow">Contacto</div>
+        <h2 class="section-title" data-i18n="contacto_title">No Te Pierdas Nada</h2>
+        <p style="font-size:0.85rem; color:var(--texto); line-height:1.7; max-width:400px;" data-i18n="contacto_p">Suscribite para recibir la agenda de eventos, lanzamientos y novedades de Río Electronic Music.</p>
       </div>
       <div class="contacto-right">
         <form class="email-form" onsubmit="handleSubmit(event)">
-          <input type="email" class="email-input" placeholder="Tu email" required>
-          <button type="submit" class="email-submit">Suscribirse</button>
+          <input type="email" class="email-input" placeholder="Tu email" data-i18n-placeholder="email_placeholder" required>
+          <button type="submit" class="email-submit" data-i18n="email_submit">Suscribirse</button>
         </form>
       </div>
     </div>
@@ -1638,6 +1565,116 @@
 
 let EVENTOS = [];
 
+const PAIS_INFO = {
+  AR: { flag: '🇦🇷', nombre: { es: 'Argentina', en: 'Argentina' } },
+  CL: { flag: '🇨🇱', nombre: { es: 'Chile', en: 'Chile' } },
+  PE: { flag: '🇵🇪', nombre: { es: 'Perú', en: 'Peru' } },
+  ES: { flag: '🇪🇸', nombre: { es: 'España', en: 'Spain' } }
+};
+const ORDEN_PAISES = ['AR', 'CL', 'PE', 'ES'];
+
+// ─── IDIOMA ───
+let currentLang = localStorage.getItem('rio_lang') || 'es';
+
+const I18N = {
+  nav_eventos: { es: 'Próximas Fechas', en: 'Upcoming Dates' },
+  nav_nosotros: { es: 'Nosotros', en: 'About' },
+  nav_ecosistema: { es: 'Ecosistema', en: 'Ecosystem' },
+  nav_contacto: { es: 'Contacto', en: 'Contact' },
+  hero_tagline: { es: 'La fiesta de electrónica más icónica', en: 'The most iconic electronic music party' },
+  scroll_label: { es: 'Scroll', en: 'Scroll' },
+  eventos_eyebrow: { es: 'Agenda', en: 'Schedule' },
+  eventos_title: { es: 'Próximas Fechas', en: 'Upcoming Dates' },
+  mes_todos: { es: 'Todos', en: 'All' },
+  no_eventos: { es: 'No hay eventos programados para este período', en: 'No events scheduled for this period' },
+  sobre_eyebrow: { es: 'La experiencia', en: 'The Experience' },
+  sobre_title: { es: 'Sobre Río', en: 'About Río' },
+  sobre_p1: {
+    es: 'Río Electronic Music nació en Buenos Aires y se convirtió en una de las fiestas de música electrónica más icónicas de Latinoamérica. Una propuesta única que fusiona naturaleza, río y la mejor música del mundo.',
+    en: 'Río Electronic Music was born in Buenos Aires and became one of the most iconic electronic music parties in Latin America. A unique experience that blends nature, river, and the best music in the world.'
+  },
+  sobre_p2: {
+    es: 'Desde sus inicios en Punta Carrasco, Río EM recibe a los mejores DJs internacionales en locaciones únicas — una experiencia que mezcla lo veraniego con lo subterráneo, lo internacional con lo local. Hoy presente en Argentina, Chile y España.',
+    en: 'Since its beginnings in Punta Carrasco, Río EM has hosted the best international DJs in unique locations — an experience that blends summer vibes with underground culture, the international with the local. Now present in Argentina, Chile, and Spain.'
+  },
+  eco_eyebrow: { es: 'Más allá de la fiesta', en: 'Beyond the party' },
+  eco_title: { es: 'Ecosistema Río', en: 'Río Ecosystem' },
+  eco_intro: {
+    es: 'Río Electronic Music es la fiesta, pero también el sello, la comunidad y los proyectos que crecieron alrededor. Así se conecta todo.',
+    en: 'Río Electronic Music is the party, but also the label, the community, and the projects that grew around it. Here\'s how it all connects.'
+  },
+  eco_label_desc: {
+    es: 'El sello discográfico de Río: lanzamientos originales, remixes y compilados de los artistas que pasan por nuestras fiestas.',
+    en: 'Río\'s record label: original releases, remixes, and compilations from the artists who play our parties.'
+  },
+  eco_link_beatport: { es: 'Ver en Beatport', en: 'View on Beatport' },
+  eco_labelig_desc: {
+    es: 'La cuenta de Instagram del sello: adelantos de lanzamientos, detrás de escena y novedades de Río Music Label.',
+    en: 'The label\'s Instagram account: release previews, behind the scenes, and news from Río Music Label.'
+  },
+  eco_link_seguir: { es: 'Seguir', en: 'Follow' },
+  eco_ingrv_desc: {
+    es: 'Escuchá los lanzamientos de Río Music Label en la plataforma que prefieras: Spotify, Beatport, Apple Music, Tidal, Deezer y más, todo desde un solo link.',
+    en: 'Listen to Río Music Label releases on whichever platform you prefer: Spotify, Beatport, Apple Music, Tidal, Deezer and more, all from a single link.'
+  },
+  eco_link_visitar: { es: 'Visitar', en: 'Visit' },
+  artistas_heading: { es: 'Artistas Destacados', en: 'Featured Artists' },
+  contacto_eyebrow: { es: 'Contacto', en: 'Contact' },
+  contacto_title: { es: 'No Te Pierdas Nada', en: "Don't Miss A Thing" },
+  contacto_p: {
+    es: 'Suscribite para recibir la agenda de eventos, lanzamientos y novedades de Río Electronic Music.',
+    en: 'Subscribe to get the event schedule, releases, and news from Río Electronic Music.'
+  },
+  email_placeholder: { es: 'Tu email', en: 'Your email' },
+  email_submit: { es: 'Suscribirse', en: 'Subscribe' }
+};
+
+function t(key) {
+  return (I18N[key] && I18N[key][currentLang]) || key;
+}
+
+function aplicarIdioma() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (I18N[key]) el.textContent = I18N[key][currentLang];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (I18N[key]) el.placeholder = I18N[key][currentLang];
+  });
+  document.querySelectorAll('[data-lang-btn]').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.langBtn === currentLang);
+  });
+  document.documentElement.lang = currentLang;
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('rio_lang', lang);
+  aplicarIdioma();
+  generarFiltroPaises();
+  generarMeses(paisActivo);
+}
+
+// Solo muestra el botón de un país si hay al menos un evento cargado para ese país
+function generarFiltroPaises() {
+  const cont = document.getElementById('paisFiltro');
+  const paisesConEventos = ORDEN_PAISES.filter(p => EVENTOS.some(e => e.pais === p));
+
+  if (paisesConEventos.length === 0) {
+    cont.innerHTML = '';
+    return;
+  }
+  if (!paisesConEventos.includes(paisActivo)) {
+    paisActivo = paisesConEventos[0];
+  }
+  cont.innerHTML = paisesConEventos.map(p => `
+    <button class="pais-btn ${p === paisActivo ? 'active' : ''}" data-pais="${p}" onclick="filtrarPais('${p}', this)">
+      <span class="pais-flag">${PAIS_INFO[p].flag}</span> ${PAIS_INFO[p].nombre[currentLang]}
+    </button>
+  `).join('');
+}
+
 async function cargarEventos() {
   try {
     const res = await fetch('eventos/eventos.json', { cache: 'no-store' });
@@ -1647,6 +1684,7 @@ async function cargarEventos() {
     console.error('No se pudieron cargar los eventos:', err);
     EVENTOS = [];
   }
+  generarFiltroPaises();
   generarMeses(paisActivo);
   renderEventos();
   initCardStagger();
@@ -1662,7 +1700,7 @@ function generarMeses(pais) {
   const meses = [...new Set(eventosPais.map(e => e.mes))];
 
   // Rebuild month buttons
-  filtroDiv.innerHTML = '<button class="mes-btn active" data-mes="TODOS" onclick="filtrarMes(this)">Todos</button>';
+  filtroDiv.innerHTML = `<button class="mes-btn active" data-mes="TODOS" onclick="filtrarMes(this)">${t('mes_todos')}</button>`;
   meses.forEach(mes => {
     const btn = document.createElement('button');
     btn.className = 'mes-btn';
@@ -1713,21 +1751,8 @@ function renderEventos() {
 
   noEventos.style.display = 'none';
   grid.innerHTML = filtrados.map(e => `
-    <a class="evento-card" href="${e.linkEntradas}" target="_blank">
+    <a class="evento-card" href="${e.linkEntradas || '#'}" target="_blank">
       <img class="evento-card-flyer" src="${e.imagen}" alt="${e.headliner}">
-      <div class="evento-card-overlay"></div>
-      <div class="evento-card-info">
-        <div class="evento-fecha">${e.fecha}</div>
-        ${e.localidad ? `<div class="evento-localidad">${e.localidad}</div>` : ''}
-        <div class="evento-subtitulo">${e.subtitulo}</div>
-        <ul class="evento-artistas">
-          ${e.artistas.map(a => `<li class="${a === e.headliner ? 'headliner' : ''}">${a}</li>`).join('')}
-        </ul>
-        <div class="evento-ctas">
-          <div class="btn-entradas">Comprar Entradas</div>
-          ${e.linkVIP ? `<a href="${e.linkVIP}" target="_blank" class="btn-entradas vip" onclick="event.stopPropagation()">Zona VIP</a>` : ''}
-        </div>
-      </div>
     </a>
   `).join('');
 }
@@ -1813,6 +1838,7 @@ function initCardStagger() {
 }
 
 // Init
+aplicarIdioma();
 cargarEventos();
 buildLeaves();
 initAnimations();
