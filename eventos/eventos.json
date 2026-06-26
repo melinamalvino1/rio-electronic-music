@@ -81,6 +81,21 @@
       ],
       "imagen": "img/8-ago-nicolas-taboada.png",
       "linkEntradas": "https://venti.com.ar/evento/nicolas-taboada-andres-koller-eze-fernandez-eros-x-rio-electronic-music-y-new-vision"
+    },
+    {
+      "pais": "PE",
+      "fecha": "15 AGO",
+      "mes": "AGO",
+      "localidad": "Paradiso Lima",
+      "headliner": "Rafa Barrios",
+      "artistas": [
+        "Rafa Barrios",
+        "Harvy Valencia",
+        "JB Martinz",
+        "Anny Rodriguez"
+      ],
+      "imagen": "img/15-ago-rafa-barrios.png",
+      "linkEntradas": "https://www.vastiontickets.com/evento/rio-pres-rafa-barrios-harvy-valencia"
     }
   ]
 }
