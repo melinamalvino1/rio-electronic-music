@@ -13,6 +13,19 @@
       "pais": "AR",
       "fecha": "08 JUL",
       "headliner": "MORITZ HOFBAUER"
+    },
+    {
+      "localidad": "Buenos Aires - Punta Carrasco",
+      "imagen": "img/8-jul-moritz.png",
+      "linkEntradas": "https://wearebombo.app.link/675wpu9Uh4b",
+      "artistas": [
+        "MORITZ HOFBAUER"
+      ],
+      "subtitulo": "Pre Feriado ",
+      "mes": "JUL",
+      "pais": "AR",
+      "fecha": "8 JUL ",
+      "headliner": "MORITZ HOFBAUER"
     }
   ]
 }
