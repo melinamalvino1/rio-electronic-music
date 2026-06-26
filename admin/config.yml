@@ -26,10 +26,12 @@ collections:
               - { label: "País", name: "pais", widget: "select", options: [
                   { label: "Argentina", value: "AR" },
                   { label: "Chile", value: "CL" },
-                  { label: "España", value: "ES" }
+                  { label: "España", value: "ES" },
+                  { label: "Perú", value: "PE" }
                 ] }
               - { label: "Fecha (ej: 14 JUN)", name: "fecha", widget: "string" }
               - { label: "Mes (ej: JUN)", name: "mes", widget: "string" }
+              - { label: "Provincia/Localidad", name: "localidad", widget: "string", required: false, hint: "Ej: Palermo, CABA / Viña del Mar / Madrid" }
               - { label: "Subtítulo (ej: PREFERIADO)", name: "subtitulo", widget: "string", required: false }
               - { label: "Headliner", name: "headliner", widget: "string" }
               - { label: "Artistas (lista)", name: "artistas", widget: "list" }
